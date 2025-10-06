@@ -52,22 +52,22 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/75" />
         </div>
         
-        <div className="relative container mx-auto px-4 py-24 md:py-32">
+        <div className="relative container mx-auto px-4 py-16 sm:py-20 md:py-28 lg:py-32">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 md:mb-6 leading-tight">
               Trusted Local Support for Global Organizations in India
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-primary-foreground/90 mb-6 md:mb-8 leading-relaxed">
               We provide verified project execution, legal and compliance checks, and on-the-ground coordination to help international NGOs, charities, and aid organizations deliver impactful initiatives across India.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/services">
-                <Button size="lg" variant="secondary" className="text-base font-semibold">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link to="/services" className="w-full sm:w-auto">
+                <Button size="lg" variant="secondary" className="w-full sm:w-auto text-sm sm:text-base font-semibold">
                   Our Services
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button size="lg" variant="outline" className="text-base font-semibold bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20">
+              <Link to="/contact" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-sm sm:text-base font-semibold bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20">
                   Partner With Us
                 </Button>
               </Link>
@@ -77,18 +77,18 @@ const Home = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">
               Key Services
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-4">
               Comprehensive support to ensure your projects make a real impact
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
@@ -112,9 +112,9 @@ const Home = () => {
             })}
           </div>
 
-          <div className="text-center mt-12">
-            <Link to="/services">
-              <Button size="lg" className="text-base">
+          <div className="text-center mt-8 md:mt-12">
+            <Link to="/services" className="inline-block w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto text-sm sm:text-base">
                 View All Services
               </Button>
             </Link>
@@ -123,16 +123,16 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-r from-primary to-primary-glow">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-primary to-primary-glow">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-foreground mb-3 md:mb-4 px-4">
             Ready to Make an Impact?
           </h2>
-          <p className="text-primary-foreground/90 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-primary-foreground/90 text-base sm:text-lg mb-6 md:mb-8 max-w-2xl mx-auto px-4">
             Let us help you execute your projects with transparency, accountability, and local expertise.
           </p>
-          <Link to="/contact">
-            <Button size="lg" variant="secondary" className="text-base font-semibold">
+          <Link to="/contact" className="inline-block w-full sm:w-auto px-4">
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto text-sm sm:text-base font-semibold">
               Get in Touch
             </Button>
           </Link>

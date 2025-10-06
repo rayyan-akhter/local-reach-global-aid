@@ -67,52 +67,52 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6 px-4">
             Partner With Us
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Get in touch to discuss how we can support your projects in India
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <Card className="border-border">
-              <CardContent className="p-6">
-                <h2 className="text-2xl font-bold text-foreground mb-6">Contact Information</h2>
+              <CardContent className="p-5 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4 sm:mb-6">Contact Information</h2>
                 
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Phone className="h-5 w-5 text-primary" />
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="p-1.5 sm:p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                      <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground">Phone</p>
-                      <p className="text-muted-foreground">+91 XXXXX XXXXX</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Mail className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground">Email</p>
-                      <p className="text-muted-foreground">hello@globalconnectfoundation.org</p>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground text-sm sm:text-base">Phone</p>
+                      <p className="text-muted-foreground text-sm sm:text-base break-all">+91 XXXXX XXXXX</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Globe className="h-5 w-5 text-primary" />
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="p-1.5 sm:p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                      <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     </div>
-                    <div>
-                      <p className="font-semibold text-foreground">Website</p>
-                      <p className="text-muted-foreground">www.globalconnectfoundation.org</p>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground text-sm sm:text-base">Email</p>
+                      <p className="text-muted-foreground text-sm sm:text-base break-all">hello@globalconnectfoundation.org</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="p-1.5 sm:p-2 bg-primary/10 rounded-lg flex-shrink-0">
+                      <Globe className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground text-sm sm:text-base">Website</p>
+                      <p className="text-muted-foreground text-sm sm:text-base break-all">www.globalconnectfoundation.org</p>
                     </div>
                   </div>
                 </div>
@@ -120,23 +120,23 @@ const Contact = () => {
             </Card>
 
             <Card className="border-border bg-gradient-to-br from-secondary/10 to-secondary/5">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-4">Why Work With Us?</h3>
-                <ul className="space-y-3 text-muted-foreground">
+              <CardContent className="p-5 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3 sm:mb-4">Why Work With Us?</h3>
+                <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-muted-foreground">
                   <li className="flex items-start gap-2">
-                    <span className="text-secondary mt-1">✓</span>
+                    <span className="text-secondary mt-0.5 sm:mt-1 flex-shrink-0">✓</span>
                     <span>Verified, reliable project execution</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-secondary mt-1">✓</span>
+                    <span className="text-secondary mt-0.5 sm:mt-1 flex-shrink-0">✓</span>
                     <span>Complete legal compliance support</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-secondary mt-1">✓</span>
+                    <span className="text-secondary mt-0.5 sm:mt-1 flex-shrink-0">✓</span>
                     <span>Transparent reporting and documentation</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-secondary mt-1">✓</span>
+                    <span className="text-secondary mt-0.5 sm:mt-1 flex-shrink-0">✓</span>
                     <span>Local expertise with global standards</span>
                   </li>
                 </ul>
@@ -146,8 +146,8 @@ const Contact = () => {
 
           {/* Contact Form */}
           <Card className="border-border">
-            <CardContent className="p-6 md:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <CardContent className="p-5 sm:p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
                   <Input
@@ -209,7 +209,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
+                <Button type="submit" size="lg" className="w-full text-sm sm:text-base">
                   Send Message
                 </Button>
               </form>
