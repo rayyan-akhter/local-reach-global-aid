@@ -45,12 +45,11 @@ const About = () => {
         <section className="mb-16">
           <Card className="border-border overflow-hidden">
             <CardContent className="p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-foreground mb-6">Who We Are</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-6">Company Overview</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                GlobalConnect Foundation partners with international NGOs, embassies, and aid organizations 
-                to ensure smooth, transparent, and effective execution of humanitarian and development 
-                projects across India. We combine local knowledge with global standards to provide reliable 
-                project oversight.
+                GlobalConnect India is a consulting and coordination firm bridging international organizations 
+                with India's legal, business, and social ecosystem. We help NGOs, corporates, and individuals 
+                establish, operate, and manage projects with transparency, compliance, and impact.
               </p>
             </CardContent>
           </Card>
@@ -65,8 +64,7 @@ const About = () => {
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">Our Vision</h2>
               <p className="text-muted-foreground leading-relaxed">
-                To strengthen global humanitarian efforts by delivering verifiable, accountable, and 
-                transparent project execution in India.
+                To be India's most trusted consultancy and coordination partner for global organizations.
               </p>
             </CardContent>
           </Card>
@@ -78,12 +76,101 @@ const About = () => {
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">Our Mission</h2>
               <p className="text-muted-foreground leading-relaxed">
-                To act as your trusted local partner, ensuring that every project is compliant, 
-                impactful, and aligned with your organizational goals.
+                To empower foreign clients with verified, ethical, and transparent services — from 
+                documentation and consulting to project execution.
               </p>
             </CardContent>
           </Card>
         </div>
+
+        {/* Core Services Overview */}
+        <section className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Our Core Services
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Comprehensive solutions tailored to your needs
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="mb-4 p-3 bg-primary/10 rounded-lg w-fit">
+                  <Users className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  NGO & Charity Coordination
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Partner NGO due diligence and verification</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Legal document verification & reporting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Local project monitoring and on-ground support</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="mb-4 p-3 bg-primary/10 rounded-lg w-fit">
+                  <Target className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Field & Execution Services
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>On-ground project coordination and supervision</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Local resource management and vendor coordination</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Beneficiary audits and transparency checks</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border">
+              <CardContent className="p-8">
+                <div className="mb-4 p-3 bg-primary/10 rounded-lg w-fit">
+                  <Shield className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Communication & Liaison
+                </h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Stakeholder and government liaison</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Translation and meeting coordination</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Event management and community engagement</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
 
         {/* Core Values */}
         <section>
