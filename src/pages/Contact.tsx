@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Phone, Mail, Globe } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { toast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '@/config/emailjs';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,8 +18,15 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+    console.log('EmailJS initialized with configuration');
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -41,19 +50,70 @@ const Contact = () => {
       return;
     }
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you soon."
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: "",
-      organization: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
+    try {
+      // EmailJS configuration from config file
+      const { SERVICE_ID: serviceId, TEMPLATE_ID: templateId, PUBLIC_KEY: publicKey } = EMAILJS_CONFIG;
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        organization: formData.organization || 'Not provided',
+        phone: formData.phone || 'Not provided',
+        message: formData.message,
+        to_email: 'rayyanakhter2003@gmail.com', // Your Gmail address
+        reply_to: formData.email // Add reply-to for better email handling
+      };
+
+      console.log('Sending email with template variables...');
+      // Note: Credentials are now loaded from environment variables for security
+      
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('EmailJS Success:', result);
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you soon."
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        organization: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error('EmailJS Error Details:', error);
+      
+      // More specific error handling
+      let errorMessage = "There was a problem sending your message. Please try again or contact us directly.";
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Invalid email')) {
+          errorMessage = "Please check your email address and try again.";
+        } else if (error.message.includes('Service not found')) {
+          errorMessage = "Email service configuration error. Please contact support.";
+        } else if (error.message.includes('Template not found')) {
+          errorMessage = "Email template configuration error. Please contact support.";
+        } else if (error.message.includes('Invalid public key')) {
+          errorMessage = "Email service authentication error. Please contact support.";
+        } else {
+          errorMessage = `Error: ${error.message}`;
+        }
+      }
+      
+      toast({
+        title: "Error Sending Message",
+        description: errorMessage,
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -157,6 +217,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your full name"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -168,6 +229,7 @@ const Contact = () => {
                     value={formData.organization}
                     onChange={handleChange}
                     placeholder="Your organization"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -181,6 +243,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="your.email@example.com"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -193,6 +256,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91 XXXXX XXXXX"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -206,11 +270,17 @@ const Contact = () => {
                     placeholder="Tell us about your project and how we can help..."
                     rows={6}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full text-sm sm:text-base">
-                  Send Message
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full text-sm sm:text-base"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
