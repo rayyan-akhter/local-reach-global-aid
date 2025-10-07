@@ -92,7 +92,7 @@ const Contact = () => {
                     </div>
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground text-sm sm:text-base">Phone</p>
-                      <p className="text-muted-foreground text-sm sm:text-base break-all">+91 XXXXX XXXXX</p>
+                      <p className="text-muted-foreground text-sm sm:text-base break-all">+91 96750 70725</p>
                     </div>
                   </div>
 
@@ -102,7 +102,7 @@ const Contact = () => {
                     </div>
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground text-sm sm:text-base">Email</p>
-                      <p className="text-muted-foreground text-sm sm:text-base break-all">hello@globalconnectfoundation.org</p>
+                      <p className="text-muted-foreground text-sm sm:text-base break-all">rayyanakhter2003@gmail.com</p>
                     </div>
                   </div>
 
