@@ -20,7 +20,7 @@ dist-ssr
 .env.production.local
 
 # Configuration files with sensitive data
-src/config/emailjs.ts
+# src/config/emailjs.ts
 
 # Editor directories and files
 .vscode/*
