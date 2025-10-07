@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Phone, Mail, Globe } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { toast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,13 @@ const Contact = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = 'egPArZRs47Ed7Z7RD';
+    emailjs.init(publicKey);
+    console.log('EmailJS initialized');
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,55 +53,64 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Using Formspree for reliable email delivery
-      // TODO: Replace with your actual Formspree endpoint
-      const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID_HERE';
+      // EmailJS configuration
+      const serviceId = 'service_33vlrd9';
+      const templateId = 'template_9msueis';
+      const publicKey = 'egPArZRs47Ed7Z7RD';
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        organization: formData.organization || 'Not provided',
+        phone: formData.phone || 'Not provided',
+        message: formData.message,
+        to_email: 'rayyanakhter2003@gmail.com',
+        reply_to: formData.email
+      };
+
+      console.log('Sending email with EmailJS...');
       
-      // Check if Formspree endpoint is configured
-      if (formspreeEndpoint.includes('YOUR_FORM_ID_HERE')) {
-        throw new Error('Formspree endpoint not configured. Please set up Formspree and update the endpoint.');
-      }
-      
-      const response = await fetch(formspreeEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          organization: formData.organization || 'Not provided',
-          phone: formData.phone || 'Not provided',
-          message: formData.message,
-          _subject: `New Contact Form Submission from ${formData.name}`,
-          _replyto: formData.email,
-        }),
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('EmailJS Success:', result);
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you soon."
       });
 
-      if (response.ok) {
-        toast({
-          title: "Message Sent!",
-          description: "Thank you for contacting us. We'll get back to you soon."
-        });
-
-        // Reset form
-        setFormData({
-          name: "",
-          organization: "",
-          email: "",
-          phone: "",
-          message: ""
-        });
-      } else {
-        throw new Error('Failed to send message');
-      }
+      // Reset form
+      setFormData({
+        name: "",
+        organization: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
 
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('EmailJS Error:', error);
+      
+      let errorMessage = "There was a problem sending your message. Please try again or contact us directly.";
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Invalid email')) {
+          errorMessage = "Please check your email address and try again.";
+        } else if (error.message.includes('Service not found')) {
+          errorMessage = "Email service configuration error. Please contact support.";
+        } else if (error.message.includes('Template not found')) {
+          errorMessage = "Email template configuration error. Please contact support.";
+        } else if (error.message.includes('Invalid public key')) {
+          errorMessage = "Email service authentication error. Please contact support.";
+        } else if (error.message.includes('limit')) {
+          errorMessage = "Email service limit reached. Please try again later or contact us directly.";
+        } else {
+          errorMessage = `Error: ${error.message}`;
+        }
+      }
       
       toast({
         title: "Error Sending Message",
-        description: "There was a problem sending your message. Please try again or contact us directly.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
